@@ -22,3 +22,24 @@ const cancelGasStation = () => {
 }
 let wallet = 150.000
 getElement('.walletbalance').textContent = wallet.toFixed(3);
+
+// FUELING
+let fuelDetails = {
+    price: 29,
+    litres: 15
+}
+const pushFuelDetails = (details) =>{
+    getElement('.price').textContent = details.price.toFixed(2)
+    getElement('.litres').textContent = details.litres.toFixed(2)
+}
+pushFuelDetails(fuelDetails);
+const checkWalletBalance = () => {
+    if(wallet < fuelDetails.price){
+        getElement('.fuelingbtn').className = "fuelingbtn flexlittle nofuel";
+        getElement('.fuelingbtn').lastElementChild.textContent = "there's not enough money for a minimum fueling"
+    }
+}
+checkWalletBalance()
+const startFueling = () => {
+    
+}
