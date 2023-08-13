@@ -1,0 +1,272 @@
+:root{
+    --fontxsmall: clamp(12px, 0.007vw, 20px);
+    --fontsmall: clamp(14px, 0.008vw, 20px);
+    --fontmedium: clamp(16px, 0.09vw, 30px);
+    --fontlarge: clamp(20px, 0.012vw , 40px);
+    --fontxl: clamp(22px, 1.4vw, 50px);
+    --padlittle: clamp(5px, 0.3vw, 25px);
+    --padmedium: clamp(10px, 0.5vw, 30px);
+    --padlarge: clamp(15px, 1vw, 100px);
+    --padlarger: clamp(20px, 1.2vw, 150px);
+    --gap: clamp(0.7rem, 0.01vw, 2rem);
+    --gaplarge: clamp(1rem, 1vw, 4rem);
+    --radius: clamp(12px, 0.01vw, 30px);
+}
+@font-face {
+    font-family: "Liquid Crystal";
+    src: url(fonts/LiquidCrystal-Bold.otf);
+  }
+.fxs{
+    font-size: var(--fontxsmall);
+}
+.fs{
+    font-size: var(--fontsmall);
+}
+.fm{
+    font-size: var(--fontmedium);
+}
+.fl{
+    font-size: var(--fontlarge);
+}
+.pointer{
+    cursor: pointer;
+}
+*{
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    font-family: 'Outfit', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-style: normal;
+}
+.hideslide{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateY(20vh);
+}
+.escape{
+    position: absolute;
+    bottom: calc(3 * var(--gaplarge));
+    right: calc(3 * var(--gaplarge));
+    z-index: 200;
+    font-size: calc( 0.7 * var(--fontsmall));
+    color: rgba(255, 255, 255, 0.65);
+}
+.escape button{
+    padding: calc(0.7 * var(--padlittle));
+    color: black;
+    font-weight: 600;
+    margin-right: calc(0.5 * var(--gap));
+    border-radius: calc(0.5 * var(--radius));
+    border: 0;  
+    font-size: calc( 0.7 * var(--fontsmall));
+}
+.flexsmall{
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+}
+.flexlittle{
+    display: flex;
+    gap: calc(0.5 * var(--gap));
+    align-items: center;
+}
+body{
+    background: url(images/background.png);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+.gasstation{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.container{
+    min-width: 30vw;
+    max-width: 33vw;
+    background: rgba(88, 88, 88, 0.40);
+    border-radius: calc(1.5 * var(--radius));
+    padding: var(--padmedium);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.gascontainer{
+    background: rgba(17, 17, 17, 0.95);
+    padding: var(--padlarger);
+    border-radius: calc(var(--radius));
+    display: flex;
+    flex-direction: column;
+    gap: var(--gaplarge);
+}
+.logo{
+    max-width: 30%;
+}
+.gascontainer header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.gascontainer header section p{
+    color: rgba(255, 255, 255, 0.65);
+    font-size: calc(0.8 * var(--fontxsmall));
+}
+.gascontainer header section div svg{
+    height: var(--fontxsmall);
+}
+.cancel{
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: calc(0.7 * var(--radius));
+    border: 2px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.05);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: var(--padlittle);
+}
+.cancel svg{
+    height: var(--fontlarge);
+}
+.counter, .fuelcontainer{
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
+}
+.counter{
+    padding: var(--padlarger);
+}
+.display{
+    border-radius: calc(0.8 * var(--radius));
+    border: 3px solid rgba(0, 0, 0, 0.20);
+    background: #4B554C;
+    padding: var(--padmedium);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-end;
+    gap: calc(0.5 * var(--gap));
+}
+.display div{
+    font-family: "Liquid Crystal";
+    font-size: calc(1.5 * var(--fontxl));
+    color: black;
+}
+.displayicons{
+    /* padding: var(--padmedium); */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    /* align-items: flex-end; */
+    /* justify-content: space-between; */
+    /* height: calc(3.2 * var(--fontxl)); */
+}
+.amount{
+    color: #787778;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontmedium);
+    gap: var(--gap);
+    margin-top: var(--gaplarge)
+}
+.hl{
+    background: rgba(255, 255, 255, 0.06);
+    height: 1px;
+    display: block;
+    flex: 1;
+}
+.fuelcontainer{
+    padding: var(--padmedium) var(--padlarger);
+}
+.fuelingbtn{
+    padding: var(--padmedium) var(--padlarge);
+    margin: 0 auto;
+    width: max-content;
+    border-radius: var(--radius);
+    font-size: var(--fontsmall);
+    letter-spacing: 0.96px;
+    font-weight: 700;
+}
+.startfueling{
+    text-transform: uppercase;
+    color: rgba(255, 201, 61, 0.90);
+    border: 1px solid rgba(255, 201, 61, 0.10);
+    background: rgba(255, 201, 61, 0.10);
+    cursor: pointer;
+}
+.startfueling:hover{
+    border: 1px solid rgba(255, 201, 61, 0.35);
+    background:  rgba(255, 201, 61, 0.80);
+}
+.startfueling:hover svg path, .stopfueling:hover svg path{
+    fill: rgba(0, 0, 0, 0.5);
+}
+.startfueling:hover p, .stopfueling:hover p{
+    color: rgba(0, 0, 0, 0.80);
+}
+.stopfueling{
+    cursor: pointer;
+    color: rgba(242, 64, 64, 0.90);
+    border: 1px solid rgba(242, 64, 64, 0.20);
+    background: rgba(242, 64, 64, 0.10);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.stopfueling:hover{
+    border: 1px solid rgba(255, 114, 114, 0.35);
+    background: rgba(242, 64, 64, 0.80);
+}
+.nofuel{
+    border: 1px solid rgba(242, 64, 64, 0.30);
+    background: transparent;
+    width: 70%;
+    color: rgba(242, 64, 64, 0.90);
+    font-weight: 500;
+    letter-spacing: 0.96px;
+    text-transform: capitalize;
+}
+.nofuel svg path{
+    fill: #F24040;
+}
+.fuellevel{
+    letter-spacing: 0.7px;
+    font-weight: 500;
+    color: #787778;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    margin-bottom: var(--gap);
+}
+.fuelguage svg{
+    height: var(--fontsmall);
+    aspect-ratio: 1/1;
+}
+.emptyicon{
+    color: #4D4D4D;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+    letter-spacing: 2.4px;
+    font-size: var(--fontlarge);
+}
+.guage{
+    flex: 1;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background:  linear-gradient(to left, rgba(255, 255, 255, 0.04) 50%, #FFA42B 50%);
+    background-position: right;
+    background-size: 200%;
+    transition: 2s ease-out;
+    height: calc(1.7 * var(--fontxl));
+}
+.guage:hover{
+    background-position: left;
+}
