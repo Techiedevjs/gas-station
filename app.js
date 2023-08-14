@@ -28,18 +28,63 @@ let fuelDetails = {
     price: 29,
     litres: 15
 }
+let gaslevel = 10
+let stopfill = false
 const pushFuelDetails = (details) =>{
     getElement('.price').textContent = details.price.toFixed(2)
     getElement('.litres').textContent = details.litres.toFixed(2)
+    fillGas(gaslevel);
+    if(wallet < details.price){
+        getElement('.walletbalance').style.color = '#F24040'
+    }
+}
+const fillGas = (gaslevel) =>{
+    if(gaslevel <= 25){
+        document.querySelector('.levelfilled').style.background = '#FF3F56'
+    } else if (gaslevel <= 50){
+        document.querySelector('.levelfilled').style.background = '#FFA42B'
+    } else if (gaslevel <= 75) {
+        document.querySelector('.levelfilled').style.background = '#C4F659'
+    } else {
+        document.querySelector('.levelfilled').style.background = '#3FEA64'
+    }
+    document.querySelector('.levelfilled').style.width = `${gaslevel}%`
 }
 pushFuelDetails(fuelDetails);
 const checkWalletBalance = () => {
     if(wallet < fuelDetails.price){
-        getElement('.fuelingbtn').className = "fuelingbtn flexlittle nofuel";
-        getElement('.fuelingbtn').lastElementChild.textContent = "there's not enough money for a minimum fueling"
+        getElement('.stopfueling').classList.add('hidden');
+        getElement('.startfueling').classList.add('hidden');
+        getElement('.nofuel').classList.remove('hidden');
+    } else {
+        getElement('.stopfueling').classList.add('hidden');
+        getElement('.startfueling').classList.remove('hidden');
+        getElement('.nofuel').classList.add('hidden');
     }
 }
 checkWalletBalance()
 const startFueling = () => {
-    
+    stopfill = false;
+    const fillStep = () => {
+        if (stopfill) {
+            getElement('.stopfueling').classList.add('hidden');
+            getElement('.startfueling').classList.remove('hidden');
+            return;
+        }
+        fillGas(gaslevel);
+        gaslevel++;
+        if (gaslevel <= 100) {
+            setTimeout(fillStep, 100); 
+        } else {
+           
+            getElement('.stopfueling').classList.add('hidden');
+            getElement('.startfueling').classList.remove('hidden');
+        }
+    };
+    getElement('.stopfueling').classList.remove('hidden');
+    getElement('.startfueling').classList.add('hidden');
+    fillStep(); 
+};
+const stopFueling = () => {
+    stopfill = true
 }
