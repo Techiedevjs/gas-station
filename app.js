@@ -34,6 +34,9 @@ const pushFuelDetails = (details) =>{
     getElement('.price').textContent = details.price.toFixed(2)
     getElement('.litres').textContent = details.litres.toFixed(2)
     fillGas(gaslevel);
+    if(wallet < details.price){
+        getElement('.walletbalance').style.color = '#F24040'
+    }
 }
 const fillGas = (gaslevel) =>{
     if(gaslevel <= 25){
@@ -68,7 +71,6 @@ const startFueling = () => {
             getElement('.startfueling').classList.remove('hidden');
             return;
         }
-
         fillGas(gaslevel);
         gaslevel++;
         if (gaslevel <= 100) {
@@ -79,12 +81,10 @@ const startFueling = () => {
             getElement('.startfueling').classList.remove('hidden');
         }
     };
-
     getElement('.stopfueling').classList.remove('hidden');
     getElement('.startfueling').classList.add('hidden');
     fillStep(); 
 };
-
 const stopFueling = () => {
-    stopfill = true;
-};
+    stopfill = true
+}
